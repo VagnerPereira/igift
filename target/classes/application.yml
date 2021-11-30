@@ -1,0 +1,22 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /igift
+  error:
+    include-message: always
+    include-binding-errors: always
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  datasource:
+    hikari:
+      maximum-pool-size: 7
+    username: gceafdaezcrszh
+    password: 0bf2d0cfa03fb6434d828f720e34bd7a2f84b3edbd33f706245a9875c242362c
+    url: jdbc:postgresql://ec2-44-195-186-235.compute-1.amazonaws.com:5432/da37m1btih9pl7?currentSchema=public
+    driver-class-name: org.postgresql.Driver

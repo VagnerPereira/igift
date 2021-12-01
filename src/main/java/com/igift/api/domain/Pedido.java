@@ -11,9 +11,11 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@SequenceGenerator(name = "seq_pedido", sequenceName = "seq_pedido", allocationSize = 1)
 public class Pedido {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pedido")
     private Long id;
 
     @OneToOne

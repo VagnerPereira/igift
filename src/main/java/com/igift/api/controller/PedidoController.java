@@ -28,13 +28,13 @@ public class PedidoController {
         pedidoService.retornarPedido(Long.getLong(idPedido));
     }
 
-    @GetMapping("/{idLoja}")
+    @GetMapping("/loja/{idLoja}")
     @ResponseStatus(HttpStatus.OK)
     public List<PedidoResponseDto> listarPedidosLoja (@PathVariable String idLoja) {
         return pedidoService.listarPedidosLoja(Long.parseLong(idLoja));
     }
 
-    @GetMapping("/{idUsuario}")
+    @GetMapping("/usuario/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
     public List<PedidoResponseDto> listarPedidosUsuario (@PathVariable String idUsuario) {
         return pedidoService.listarPedidosUsuario(Long.parseLong(idUsuario));

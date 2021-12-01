@@ -27,13 +27,13 @@ public class EntregadorController {
     @GetMapping("/{idEntregador}")
     @ResponseStatus(HttpStatus.OK)
     public List<PedidoResponseDto> listarPedidosEntregador (@PathVariable String idEntregador) {
-        return entregadorService.listarPedidosEntregador(Long.getLong(idEntregador));
+        return entregadorService.listarPedidosEntregador(Long.parseLong(idEntregador));
     }
 
     @GetMapping("/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
     public EntregadorDto retornarEntregador (@PathVariable String idEntregador) {
-        return entregadorService.retornarEntregador(Long.getLong(idEntregador));
+        return entregadorService.retornarEntregador(Long.parseLong(idEntregador));
     }
 
     @PostMapping("/logar")

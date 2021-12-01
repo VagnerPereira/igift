@@ -6,6 +6,7 @@ import com.igift.api.domain.Entregador;
 import com.igift.api.domain.UserLogin;
 import com.igift.api.mapper.EntregadorMapper;
 import com.igift.api.mapper.PedidoMapper;
+import com.igift.api.repository.EnderecoRepository;
 import com.igift.api.repository.EntregadorRepository;
 import com.igift.api.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,12 @@ public class EntregadorServiceImpl implements EntregadorService {
     @Autowired
     PedidoRepository pedidoRepository;
 
+    @Autowired
+    EnderecoRepository enderecoRepository;
+
     @Override
     public void salvarEntregador(Entregador entregador) {
+        enderecoRepository.save(entregador.getEndereco());
         repository.save(entregador);
     }
 

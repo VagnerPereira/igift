@@ -12,9 +12,11 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
+@SequenceGenerator(name = "seq_entregador", sequenceName = "seq_entregador", allocationSize = 1)
 public class Entregador {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_entregador")
     private Long id;
 
     private String nome;

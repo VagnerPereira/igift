@@ -27,10 +27,10 @@ public class LojaController {
     @GetMapping("/{idLoja}")
     @ResponseStatus(HttpStatus.OK)
     public LojaDto retornarLoja (@PathVariable String idLoja) {
-        return lojaService.retornarLoja(Long.getLong(idLoja));
+        return lojaService.retornarLoja(Long.parseLong(idLoja));
     }
 
-    @PostMapping("/listarLojas")
+    @GetMapping("/listarLojas")
     @ResponseStatus(HttpStatus.OK)
     public List<LojaDto> listarLojas () {
         return lojaService.retornarListaLojas();
@@ -38,8 +38,8 @@ public class LojaController {
 
     @GetMapping("/retornarItensLoja/{idLoja}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Item> listarItensLoja (String idLoja) {
-        return lojaService.retornarItensLoja(Long.getLong(idLoja));
+    public List<Item> listarItensLoja (@PathVariable String idLoja) {
+        return lojaService.retornarItensLoja(Long.parseLong(idLoja));
     }
 
     @PostMapping("/item/adicionar")

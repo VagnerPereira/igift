@@ -31,19 +31,19 @@ public class PedidoController {
     @GetMapping("/{idLoja}")
     @ResponseStatus(HttpStatus.OK)
     public List<PedidoResponseDto> listarPedidosLoja (@PathVariable String idLoja) {
-        return pedidoService.listarPedidosLoja(Long.getLong(idLoja));
+        return pedidoService.listarPedidosLoja(Long.parseLong(idLoja));
     }
 
     @GetMapping("/{idUsuario}")
     @ResponseStatus(HttpStatus.OK)
     public List<PedidoResponseDto> listarPedidosUsuario (@PathVariable String idUsuario) {
-        return pedidoService.listarPedidosUsuario(Long.getLong(idUsuario));
+        return pedidoService.listarPedidosUsuario(Long.parseLong(idUsuario));
     }
 
     @PutMapping("/sairParaEntrega")
     @ResponseStatus(HttpStatus.OK)
     public void mudarStatusSaiuParaEntrega (@RequestBody String idPedido) {
-        pedidoService.pedidoSaiuParaEntrega(Long.getLong(idPedido));
+        pedidoService.pedidoSaiuParaEntrega(Long.parseLong(idPedido));
     }
 
     @PutMapping("/{idPedido}")
@@ -55,7 +55,7 @@ public class PedidoController {
     @GetMapping("/listarItens/{idPedido}")
     @ResponseStatus(HttpStatus.OK)
     public void listarItensPedido (@PathVariable String idPedido) {
-        pedidoService.listarItensPedido(Long.getLong(idPedido));
+        pedidoService.listarItensPedido(Long.parseLong(idPedido));
     }
 
 }

@@ -11,18 +11,20 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
+@SequenceGenerator(name = "swq_item", sequenceName = "swq_item", allocationSize = 1)
 public class Item {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "swq_item")
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "id_lojab")
+    @JoinColumn(name = "id_loja")
     private Loja loja;
 
     private String nome;
 
-    private String valorUnitario;
+    private double valorUnitario;
 
     @Enumerated(EnumType.STRING)
     private Categoria categoria;

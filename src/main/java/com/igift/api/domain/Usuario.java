@@ -12,9 +12,11 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
+@SequenceGenerator(name = "seq_usuario", sequenceName = "seq_usuario", allocationSize = 1)
 public class Usuario {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
     private Long id;
 
     private String nome;
@@ -27,6 +29,7 @@ public class Usuario {
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
+    @Column(unique=true)
     private String email;
 
     private String senha;

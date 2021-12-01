@@ -4,6 +4,7 @@ import com.igift.api.Dto.response.UsuarioDto;
 import com.igift.api.domain.UserLogin;
 import com.igift.api.domain.Usuario;
 import com.igift.api.mapper.UsuarioMapper;
+import com.igift.api.repository.EnderecoRepository;
 import com.igift.api.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,12 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Autowired
     UsuarioRepository repository;
 
+    @Autowired
+    EnderecoRepository enderecoRepository;
+
     @Override
     public void salvarUsuario(Usuario usuario) {
+        enderecoRepository.save(usuario.getEndereco());
         repository.save(usuario);
     }
 

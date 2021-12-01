@@ -15,7 +15,7 @@ public class AdicionarItemRequestDto {
 
     private String nome;
 
-    private String valorUnitario;
+    private double valorUnitario;
 
     private Categoria categoria;
 }

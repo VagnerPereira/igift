@@ -5,13 +5,11 @@ import com.igift.api.Dto.request.PedidoRequestDto;
 import com.igift.api.Dto.response.PedidoResponseDto;
 import com.igift.api.domain.*;
 import com.igift.api.mapper.PedidoMapper;
-import com.igift.api.repository.EntregadorRepository;
-import com.igift.api.repository.LojaRepository;
-import com.igift.api.repository.PedidoRepository;
-import com.igift.api.repository.UsuarioRepository;
+import com.igift.api.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,17 +28,28 @@ public class PedidoServiceImpl implements PedidoService{
     @Autowired
     EntregadorRepository entregadorRepository;
 
+    @Autowired
+    EnderecoRepository enderecoRepository;
+
+    @Autowired
+    CartaoRepository cartaoRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
+
     @Override
     public void salvarPedido(PedidoRequestDto requestDto) {
         Entregador entregador = entregadorRepository.retornaEntregador(requestDto.getEntregadorId());
         Usuario usuario = usuarioRepository.retornarUsuario(requestDto.getIdUsuario());
         Loja loja = lojaRepository.retornarLoja(requestDto.getIdLoja());
+        enderecoRepository.save(requestDto.getEndereco());
+        cartaoRepository.save(requestDto.getCartao());
         Pedido pedido = Pedido.builder()
                 .cartao(requestDto.getCartao())
                 .endereco(requestDto.getEndereco())
                 .entregador(entregador)
                 .finalizado(false)
-                .listaItens(requestDto.getListaItens())
+                .listaItens(carregaItens(requestDto.getListaItensId()))
                 .saiuParaEntrega(false)
                 .loja(loja)
                 .usuario(usuario)
@@ -84,5 +93,11 @@ public class PedidoServiceImpl implements PedidoService{
     @Override
     public void adicionarItemPedido(AdicionarItemPedidoRequest adicionarItemPedidoRequest) {
         repository.adicionarItemPedido(adicionarItemPedidoRequest.getIdPedido(), adicionarItemPedidoRequest.getIdItem());
+    }
+
+    private List<Item> carregaItens (List<Long> itensId) {
+        List<Item> itens = new ArrayList<>();
+        itensId.forEach(itemId -> itens.add(itemRepository.retornarItem(itemId)));
+        return itens;
     }
 }

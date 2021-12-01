@@ -14,7 +14,7 @@ public class PedidoRequestDto {
     private Long idUsuario;
     private Long idLoja;
     private Endereco endereco;
-    private List<Item> listaItens;
+    private List<Long> listaItensId;
     private Double valorTotal;
     private Double valorItens;
     private Double valorFrete;

@@ -11,4 +11,7 @@ import java.util.List;
 public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query(value = "Select * from item it inner join loja loj on it.id_loja = loj.id and loj.id = ?1", nativeQuery = true)
     List<Item> retornarItensLoja (Long lojaId);
+
+    @Query(value = "Select * from item it where it.id = ?1", nativeQuery = true)
+    Item retornarItem (Long itemId);
 }
